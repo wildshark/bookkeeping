@@ -1,0 +1,23 @@
+{
+    "application":"Crypto-Exchange",
+    "version":"1.0.0.1",
+    "developer":"iQuipe Digital",
+    "language":"en",
+    "config":{
+        "model":"offline",
+        "license":"",
+        "db_conn":"mysqlite",
+        "db_sqlite":{
+            "db_name":"bookkeeping.db"
+        },
+        "db_mysql":{
+            "host":"localhost",
+            "username":"root",
+            "password":"",
+            "port":"",
+            "db_name":""
+        },
+        "flutter":{
+        }
+    }
+}
