@@ -27,6 +27,8 @@ if(!file_exists($_CONFIG)){
     include("control/template.php");
 
     //module
+    include("module/user.php");
+    include("module/transaction.php");
     
     if(!$_SESSION['auth']) {
         header('location:index.php');
