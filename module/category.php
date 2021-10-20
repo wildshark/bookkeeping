@@ -34,6 +34,26 @@ class category{
         
     }
 
+    public static function fetch_income($conn){
+
+        $sql ="SELECT * FROM 'main'.'qry_category' WHERE book_id = 1 LIMIT 0,1000";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+        
+    }
+
+    public static function fetch_expenses($conn){
+
+        $sql ="SELECT * FROM 'main'.'qry_category' WHERE book_id = 2 LIMIT 0,1000";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+        
+    }
+
     public static function delete($conn,$r){
         
         $sql ="DELETE FROM 'main'.'bk_category' WHERE rowid = ?";

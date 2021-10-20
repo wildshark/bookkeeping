@@ -266,7 +266,8 @@
                                                     <th>Details</th>
                                                     <th>Type</th>
                                                     <th>Ref</th>
-                                                    <th>Amount</th>
+                                                    <th>Income</th>
+                                                    <th>Expenses</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -287,7 +288,8 @@
                                                                 <td>{$r['details']}</td>
                                                                 <td>{$r['ref']}</td>
                                                                 <td>{$r['tran_type']}</td>
-                                                                <td>{$r['amt']}</td>
+                                                                <td>{$r['dr']}</td>
+                                                                <td>{$r['cr']}</td>
                                                                 
                                                             </tr>";
                                                         }

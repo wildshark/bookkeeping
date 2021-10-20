@@ -1,6 +1,9 @@
 <?php
 $token = $_GET['token'];
 $page = $_REQUEST["_page"];
+$_income =  category::fetch_income($conn);
+$_expenses =  category::fetch_expenses($conn);
+
 switch($page){
 
     case"dashboard";
@@ -8,35 +11,43 @@ switch($page){
     break;
 
     case"income";
-        $res = tranaction::fetch_income($conn);
+        $res = transaction::fetch_income($conn);
         require("template/{$page}.php");
     break;
 
     case"expenses";
-        $res = tranaction::fetch_expenses($conn);
+        $res = transaction::fetch_expenses($conn);
         require("template/{$page}.php");
     break;
 
     case"cash";
-        $res = tranaction::fetch_cash($conn);
+        $res = transaction::fetch_cash($conn);
         require("template/{$page}.php");
     break;
 
     case"bank";
-        $res = tranaction::fetch_bank($conn);
+        $res = transaction::fetch_bank($conn);
         require("template/{$page}.php");
     break;
 
     case"transaction";
-        $res = tranaction::view($conn,$_GET['id']);
+        $res = transaction::view($conn,$_GET['id']);
         require("template/transaction.php");
     break;
 
-    case"payroll";
+    case"ledger";
+        $res = transaction::ledger($conn);
         require("template/{$page}.php");
     break;
 
+    case"ledger-details";
+        $res = transaction::ledger_details($conn,$_GET['id']);
+        require("template/ledger.details.php");
+    break;
+
     case"category";
+        $incomes = category::fetch_income($conn);
+        $expenses = category::fetch_expenses($conn);
         require("template/{$page}.php");
     break;
 

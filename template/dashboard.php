@@ -990,6 +990,7 @@
                             </div>
                         </div>
                         <!-- /# column -->
+                        <?php include("model.php")?>
                     </div>
 
 

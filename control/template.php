@@ -19,9 +19,15 @@ function menu($token){
             <li><a href='?_page=payroll&token={$token}'>Payroll</a></li>
         </ul>
         </li>
-        <li><a href='app-event-calender.html'><i class='ti-calendar'></i> Income </a></li>
-        <li><a href='app-email.html'><i class='ti-email'></i> Expenses</a></li>
-        <li><a href='app-email.html'><i class='ti-email'></i> Financal Report</a></li>
+        <li><a href='#' data-toggle='modal' data-target='#incomeModalCenter'><i class='ti-calendar'></i> Income </a></li>
+        <li><a href='#' data-toggle='modal' data-target='#expensesModalCenter'><i class='ti-email'></i> Expenses</a></li>
+        <li><a class='sidebar-sub-toggle'><i class='ti-bar-chart-alt'></i> Report <span
+                class='sidebar-collapse-icon ti-angle-down'></span></a>
+        <ul>
+            <li><a href='?_page=ledger&token={$token}'> Ledgers</a></li>
+            <li><a href='?_page=report&token={$token}'> Finanical Report</a></li>
+        </ul>
+        <li><a href='#' data-toggle='modal' data-target='#exampleModalCenter'><i class='ti-email'></i> Financal Report</a></li>
 
         <li><a class='sidebar-sub-toggle'><i class='ti-layout'></i> Setting <span
                 class='sidebar-collapse-icon ti-angle-down'></span></a>

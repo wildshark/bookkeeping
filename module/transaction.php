@@ -1,6 +1,6 @@
 <?php
 
-class tranaction{
+class transaction{
 
 
     public static function add_income($conn,$r){
@@ -92,6 +92,25 @@ class tranaction{
 
         return $stmt->execute();
         
+    }
+
+    public static function ledger($conn){
+
+        $sql ="SELECT * FROM 'main'.'get_ledger' LIMIT 0,1000";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function ledger_details($conn,$id){
+
+        $sql ="SELECT qry_transaction.* FROM qry_transaction WHERE qry_transaction.category_id =?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
     }
 
     public static function report(){

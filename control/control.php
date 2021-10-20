@@ -11,4 +11,19 @@ function split_toke($str){
     return $i[0]."-".$i[1]."-".$i[2]."-".$i[3];
 }
 
+function category($combo){
+
+    foreach($combo as $r){
+        echo"<option value='{$r['category_id']}'>{$r['category_title']}</option>";
+    }
+}
+
+function category_expenses($combo){
+
+    foreach($combo as $r){
+        echo"<option value='{$r['category_id']}'>{$r['category_title']}</option>";
+    }
+}
+
+
 ?>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Focus Admin: Data Table</title>
+    <title>Focus Admin: Basic Form </title>
 
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
@@ -23,7 +23,6 @@
     <!-- Styles -->
     <link href="assets/css/lib/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
-    <link href="assets/css/lib/data-table/buttons.bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet">
     <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/lib/helper.css" rel="stylesheet">
@@ -31,6 +30,7 @@
 </head>
 
 <body>
+
 
         <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
             <div class="nano">
@@ -42,6 +42,7 @@
             </div>
         </div>
         <!-- /# sidebar -->
+
 
     <div class="header">
         <div class="container-fluid">
@@ -244,7 +245,7 @@
                             <div class="page-title">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Table-Export</li>
+                                    <li class="breadcrumb-item active">Form-Basic</li>
                                 </ol>
                             </div>
                         </div>
@@ -254,57 +255,157 @@
                 <!-- /# row -->
                 <section id="main-content">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div class="card">
-                                <div class="bootstrap-data-table-panel">
-                                    <div class="table-responsive">
-                                        <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Date</th>
-                                                    <th>Details</th>
-                                                    <th>Type</th>
-                                                    <th>Ref</th>
-                                                    <th>Amount</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                    if((!isset($res))||($res ==false)){
-                                                        echo"";
-                                                    }else{
-                                                        foreach($res as $r){
-                                                            if(!isset($n)){
-                                                                $n = 1;
-                                                            }else{
-                                                                $n =$n +1;
-                                                            }   
-                                                            echo" 
-                                                            <tr>
-                                                                <td>{$n}</td>
-                                                                <td>{$r['tran_date']}</td>
-                                                                <td>{$r['details']}</td>
-                                                                <td>{$r['ref']}</td>
-                                                                <td>{$r['tran_type']}</td>
-                                                                <td>{$r['amt']}</td>
-                                                                
-                                                            </tr>";
-                                                        }
-                                                    }
-                                                ?>                                              
-                                            </tbody>
-                                        </table>
+                                <div class="card-title">
+                                    <h4>Input Style</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="basic-form">
+                                        <form method="post" action="index.php">
+                                            <div class="form-group">
+                                                <p class="text-muted m-b-15 f-s-12">Transaction Category</p>
+                                                <input type="text" name="title" class="form-control input-default " placeholder="Title">
+                                            </div>
+                                            <div class="form-group">
+                                                <p class="text-muted m-b-15 f-s-12">Transaction Type</p>
+                                                <select name='type' id="inputState" class="form-control input-default">
+                                                    <option value='1'>Income</option>
+                                                    <option value="2">Expenses</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" name="_submit" value="category-add" class="form-control btn-primary" placeholder="Input Focus"> Submit</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /# card -->
                         </div>
-                        <?php include("model.php")?>
+                        <!-- /# column -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-title">
+                                    <h4>Search Box Style</h4>
+                                    
+                                </div>
+                                <div class="card-body">
+                                    <div class="basic-form">
+                                        <!-- Nav tabs -->
+											<ul class="nav nav-tabs" role="tablist">
+												<li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Income</span></a> </li>
+												<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Expenses</span></a> </li>
+												<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Messages</span></a> </li>
+											</ul>
+											<!-- Tab panes -->
+											<div class="tab-content tabcontent-border">
+												<div class="tab-pane active" id="home" role="tabpanel">
+													<div class="p-20">
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                            <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>Categories</th>
+                                                                        <th>Status</th>
+                                                                        <th></th>                                                                    
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                        if((!isset($incomes))||($incomes == false)){
+                                                                            echo"";
+                                                                        }else{
+                                                                            foreach($incomes as $i){
+
+                                                                                if(!isset($n)){
+                                                                                    $n = 1;
+                                                                                }else{
+                                                                                    $n = $n + 1;
+                                                                                }
+                                                                                if($i['status_id'] == 1){
+                                                                                    $btn ="Enable";
+                                                                                }else{
+                                                                                    $btn ="Disable";
+                                                                                }
+
+                                                                                echo"
+                                                                                    <tr>
+                                                                                        <th scope='row'>{$n}</th>
+                                                                                        <td>{$i['category_title']}</td>
+                                                                                        <td>{$btn}</td>
+                                                                                        <td class='color-danger'>Remove</td>
+                                                                                    </tr>"
+                                                                                ;
+
+                                                                            }
+                                                                        }   
+                                                                    ?>
+                                                                   
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+													</div>
+												</div>
+												<div class="tab-pane" id="profile" role="tabpanel">
+                                                    <div class="p-20">
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>Categories</th>
+                                                                        <th>Status</th>
+                                                                        <th></th>                                                                    
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                        if((!isset($expenses))||($expenses == false)){
+                                                                            echo"";
+                                                                        }else{
+                                                                            foreach($expenses as $i){
+
+                                                                                if(!isset($n)){
+                                                                                    $n = 1;
+                                                                                }else{
+                                                                                    $n = $n + 1;
+                                                                                }
+                                                                                if($i['status_id'] == 1){
+                                                                                    $btn ="Enable";
+                                                                                }else{
+                                                                                    $btn ="Disable";
+                                                                                }
+
+                                                                                echo"
+                                                                                    <tr>
+                                                                                        <th scope='row'>{$n}</th>
+                                                                                        <td>{$i['category_title']}</td>
+                                                                                        <td>{$btn}</td>
+                                                                                        <td class='color-danger'>Remove</td>
+                                                                                    </tr>"
+                                                                                ;
+
+                                                                            }
+                                                                        }   
+                                                                    ?>
+                                                                   
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+													</div>
+                                                </div>
+												<div class="tab-pane p-20" id="messages" role="tabpanel">3</div>
+											</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- /# column -->
                     </div>
                     <!-- /# row -->
-
+                    
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="footer">
@@ -321,8 +422,6 @@
 
 
 
-
-
     
     <!-- jquery vendor -->
     <script src="assets/js/lib/jquery.min.js"></script>
@@ -334,17 +433,13 @@
     
     <!-- bootstrap -->
 
+
     <script src="assets/js/lib/bootstrap.min.js"></script><script src="assets/js/scripts.js"></script>
     <!-- scripit init-->
-    <script src="assets/js/lib/data-table/datatables.min.js"></script>
-    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.flash.min.js"></script>
-    <script src="assets/js/lib/data-table/jszip.min.js"></script>
-    <script src="assets/js/lib/data-table/pdfmake.min.js"></script>
-    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-    <script src="assets/js/lib/data-table/datatables-init.js"></script>
+
+
+
+
 
 </body>
 

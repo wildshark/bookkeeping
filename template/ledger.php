@@ -227,6 +227,9 @@
         </div>
     </div>
 
+
+
+
     <div class="content-wrap">
         <div class="main">
             <div class="container-fluid">
@@ -262,11 +265,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Date</th>
-                                                    <th>Details</th>
-                                                    <th>Type</th>
-                                                    <th>Ref</th>
-                                                    <th>Amount</th>
+                                                    <th>Book</th>
+                                                    <th>Ledger</th>
+                                                    <th>Income</th>
+                                                    <th>Expenses</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -280,15 +282,17 @@
                                                             }else{
                                                                 $n =$n +1;
                                                             }   
+                                                            $r['dr']= number_format($r['dr'],2);
+                                                            $r['cr'] = number_format($r['cr'],2); 
+                                                            $token = $_GET['token'];
+                                                            $id = $r['category_id']; 
                                                             echo" 
                                                             <tr>
                                                                 <td>{$n}</td>
-                                                                <td>{$r['tran_date']}</td>
-                                                                <td>{$r['details']}</td>
-                                                                <td>{$r['ref']}</td>
-                                                                <td>{$r['tran_type']}</td>
-                                                                <td>{$r['amt']}</td>
-                                                                
+                                                                <td>{$r['book_title']}</td>
+                                                                <td class='text-primary'><a href='?_page=ledger-details&token={$token}&id={$id}'>{$r['category_title']}</a></td>
+                                                                <td>{$r['dr']}</td>
+                                                                <td>{$r['cr']}</td>
                                                             </tr>";
                                                         }
                                                     }
@@ -300,8 +304,8 @@
                             </div>
                             <!-- /# card -->
                         </div>
-                        <?php include("model.php")?>
                         <!-- /# column -->
+                        <?php include("model.php")?>
                     </div>
                     <!-- /# row -->
 
