@@ -59,17 +59,13 @@
                             <i class="header-icon ti-bell"></i>
                         </div>
                         <div class="dropdown dib">
-                            <a href='?_page=log-off'><i class="header-icon ti-power-off"></i></a>
+                            <a href='?_page=log-off&token=<?=$_GET['token']?>'><i class="header-icon ti-power-off"></i></a>
                         </div>                       
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
 
     <div class="content-wrap">
         <div class="main">
@@ -131,7 +127,7 @@
                                                             <tr>
                                                                 <td>{$n}</td>
                                                                 <td>{$r['book_title']}</td>
-                                                                <td class='text-primary'><a href='?_page=ledger-details&token={$token}&id={$id}'>{$r['category_title']}</a></td>
+                                                                <td ><a href='?_page=ledger-details&token={$token}&id={$id}' class='text-primary' >{$r['category_title']}</a></td>
                                                                 <td>{$r['dr']}</td>
                                                                 <td>{$r['cr']}</td>
                                                             </tr>";

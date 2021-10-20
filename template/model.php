@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">New Grant</h5>
+                <h5 class="modal-title">New Income</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
@@ -12,16 +12,16 @@
                     <!--form-->
                         <div class="row">
                             <div class="col-sm-6">
-                                <input type="date" name="date" class="form-control">
+                                <input type="date" name="date"  required class="form-control">
                             </div>
                             <div class="col-sm-6 mt-2 mt-sm-0">
-                                <input type="text" name='ref' value="<?=time()?>" class="form-control" placeholder="Ref">
+                                <input type="text" name='ref' required value="<?=time()?>" class="form-control" placeholder="Ref">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-sm-12 mt-12 mt-sm-0">
-                                <select name='category' id="inputState" class="form-control">
+                                <select name='category' required id="inputState" class="form-control">
                                    <?=category($_income)?>
                                 </select>
                             </div>
@@ -29,20 +29,20 @@
                         <br>   
                         <div class="row">
                             <div class="col-sm-12">
-                                <input type="text" name="details" class="form-control" placeholder="Details">
+                                <input type="text" name="details"  required class="form-control" placeholder="Details">
                             </div>
                         </div> 
                         <br>   
                         <div class="row">
                             <div class="col-sm-6 mt-2 mt-sm-0">
-                                <select name='type' id="inputState" class="form-control">
+                                <select name='type' id="inputState"  required class="form-control">
                                     <option selected>Bank</option>
                                     <option>Cash</option>
-                                    <option>Momo</option>
+                                    <!--option>Momo</option-->
                                 </select>
                             </div>
                             <div class="col-sm-6 mt-2 mt-sm-0">
-                                <input type="text" name="amt" class="form-control" placeholder="0.00">
+                                <input type="text" name="amt"  required class="form-control" placeholder="0.00">
                             </div>
                         </div>
                     <!--/form-->
@@ -62,7 +62,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">New Grant</h5>
+                <h5 class="modal-title">New Expenses</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
@@ -71,16 +71,16 @@
                     <!--form-->
                         <div class="row">
                             <div class="col-sm-6">
-                                <input type="date" name="date" class="form-control">
+                                <input type="date"  required name="date" class="form-control">
                             </div>
                             <div class="col-sm-6 mt-2 mt-sm-0">
-                                <input type="text" name='ref' value="<?=time()?>" class="form-control" placeholder="Ref">
+                                <input type="text" name='ref'  required value="<?=time()?>" class="form-control" placeholder="Ref">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-sm-12 mt-12 mt-sm-0">
-                                <select name='category' id="inputState" class="form-control">
+                                <select name='category' id="inputState"  required class="form-control">
                                    <?=category($_expenses)?>
                                 </select>
                             </div>
@@ -88,20 +88,20 @@
                         <br>   
                         <div class="row">
                             <div class="col-sm-12">
-                                <input type="text" name="details" class="form-control" placeholder="Details">
+                                <input type="text" name="details" required class="form-control" placeholder="Details">
                             </div>
                         </div> 
                         <br>   
                         <div class="row">
                             <div class="col-sm-6 mt-2 mt-sm-0">
-                                <select name='type' id="inputState" class="form-control">
+                                <select name='type'  required id="inputState" class="form-control">
                                     <option selected>Bank</option>
                                     <option>Cash</option>
                                     <option>Momo</option>
                                 </select>
                             </div>
                             <div class="col-sm-6 mt-2 mt-sm-0">
-                                <input type="text" name="amt" class="form-control" placeholder="0.00">
+                                <input type="text" name="amt"  required class="form-control" placeholder="0.00">
                             </div>
                         </div>
                     <!--/form-->

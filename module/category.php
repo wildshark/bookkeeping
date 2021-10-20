@@ -54,6 +54,16 @@ class category{
         
     }
 
+    public static function status($conn,$r){
+
+        $sql ="UPDATE 'main'.'bk_category' SET 'status_id' = ? WHERE rowid = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1,$r[0]);
+        $stmt->bindParam(2,$r[1]);
+
+        return $stmt->execute();
+    }
+
     public static function delete($conn,$r){
         
         $sql ="DELETE FROM 'main'.'bk_category' WHERE rowid = ?";

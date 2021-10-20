@@ -54,6 +54,15 @@ class transaction{
         
     }
 
+    public static function fetch_gerenal_transaction($conn){
+
+        $sql ="SELECT * FROM 'main'.'qry_transaction' ORDER BY 'tranaction_id' DESC LIMIT 0,1000";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
     public static function fetch_bank($conn){
 
         $sql ="SELECT * FROM 'main'.'qry_bank' LIMIT 0,1000";

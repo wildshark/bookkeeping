@@ -43,7 +43,7 @@
                             <form method="post" action="index.php">
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input type="text" name="username" class="form-control" placeholder="Email">
+                                    <input type="text" name="username" class="form-control" placeholder="Username">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>

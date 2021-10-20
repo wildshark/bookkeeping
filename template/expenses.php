@@ -59,7 +59,7 @@
                             <i class="header-icon ti-bell"></i>
                         </div>
                         <div class="dropdown dib">
-                            <a href='?_page=log-off'><i class="header-icon ti-power-off"></i></a>
+                            <a href='?_page=log-off&token=<?=$_GET['token']?>'><i class="header-icon ti-power-off"></i></a>
                         </div>                       
                     </div>
                 </div>
@@ -108,6 +108,7 @@
                                                     <th>Type</th>
                                                     <th>Ref</th>
                                                     <th>Amount</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -129,6 +130,9 @@
                                                                 <td>{$r['ref']}</td>
                                                                 <td>{$r['tran_type']}</td>
                                                                 <td>{$r['amt']}</td>
+                                                                <td>
+                                                                    <a href='?_submit=transaction-delete&type=expenses&id={$id}&token={$token}' class='text-danger'> Delete </a>
+                                                                </td>
                                                                 
                                                             </tr>";
                                                         }

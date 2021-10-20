@@ -60,7 +60,7 @@
                             <i class="header-icon ti-bell"></i>
                         </div>
                         <div class="dropdown dib">
-                            <a href='?_page=log-off'><i class="header-icon ti-power-off"></i></a>
+                            <a href='?_page=log-off&token=<?=$_GET['token']?>'><i class="header-icon ti-power-off"></i></a>
                         </div>                       
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-title pr">
-                                    <h4>All Expense</h4>
+                                    <h4>All Transaction</h4>
 
                                 </div>
                                 <div class="card-body">
@@ -155,104 +155,50 @@
                                         <table class="table student-data-table m-t-20">
                                             <thead>
                                                 <tr>
-                                                    <th><label><input type="checkbox" value=""></label>ID</th>
-                                                    <th>Expense Type</th>
+                                                    <th>ID</th>
+                                                    <th>Books</th>
+                                                    <th>Ledger</th>
+                                                    <th>Details</th>
+                                                    <th>Type</th>
+                                                    <th>Ref #</th>
                                                     <th>Amount</th>
-                                                    <th>Status</th>
-                                                    <th>Email</th>
-                                                    <th>Date</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        Salary
-                                                    </td>
-                                                    <td>
-                                                        $2000
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-primary">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        edumin@gmail.com
-                                                    </td>
-                                                    <td>
-                                                        10/05/2017
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label><input type="checkbox" value=""></label>#2901</td>
-                                                    <td>
-                                                        Salary
-                                                    </td>
-                                                    <td>
-                                                        $2000
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-warning">Pending</span>
-                                                    </td>
-                                                    <td>
-                                                        edumin@gmail.com
-                                                    </td>
-                                                    <td>
-                                                        10/05/2017
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label><input type="checkbox" value=""></label>#2901</td>
-                                                    <td>
-                                                        Salary
-                                                    </td>
-                                                    <td>
-                                                        $2000
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-primary">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        edumin@gmail.com
-                                                    </td>
-                                                    <td>
-                                                        10/05/2017
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label><input type="checkbox" value=""></label>#2901</td>
-                                                    <td>
-                                                        Salary
-                                                    </td>
-                                                    <td>
-                                                        $2000
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-danger">Due</span>
-                                                    </td>
-                                                    <td>
-                                                        edumin@gmail.com
-                                                    </td>
-                                                    <td>
-                                                        10/05/2017
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label><input type="checkbox" value=""></label>#2901</td>
-                                                    <td>
-                                                        Salary
-                                                    </td>
-                                                    <td>
-                                                        $2000
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-primary">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        edumin@gmail.com
-                                                    </td>
-                                                    <td>
-                                                        10/05/2017
-                                                    </td>
-                                                </tr>
+                                                <?php
+                                                    if((!isset($gerenal))||($gerenal ==="false")){
+                                                        echo"";
+                                                    }else{
+                                                        foreach($gerenal as $r){
+                                                            $r['amt'] = $r['dr'] + $r['cr'];
+                                                            if($r['book_id'] == 1){
+                                                                $css = "text-success";
+                                                            }else{
+                                                                $css = "text-danger";
+                                                            }
+                                                            if(!isset($n)){
+                                                                $n = 1;
+                                                            }else{
+                                                                $n =$n +1;
+                                                            }
+                                                            $book =  ucwords($r['book_title']);
+                                                            $r['category_title'] = ucwords($r['category_title']);
+                                                            $r['details'] = ucfirst($r['details']);
+                                                            $r['tran_type'] = ucfirst($r['tran_type']);
+                                                            $r['amt'] = number_format($r['amt'],2);
+                                                            echo"
+                                                            <tr>
+                                                                <td>{$n}</td>
+                                                                <td class='{$css}'>{$book}</td>
+                                                                <td>{$r['category_title']}</td>
+                                                                <td>{$r['details']}</td>
+                                                                <td>{$r['tran_type']}</td>
+                                                                <td>{$r['ref']}</td>
+                                                                <td>{$r['amt']}</td>
+                                                            </tr>";
+                                                        }
+                                                    }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>

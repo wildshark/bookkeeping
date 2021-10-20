@@ -84,6 +84,10 @@ if(!isset($_REQUEST["_submit"])){
             }elseif ($_action ==="delete") {
                 $q[] = $_REQUEST['id'];
                 $response = category::delete($conn,$q);
+            }elseif($_action ==="status"){
+                $q[] = $_REQUEST['status'];
+                $q[] = $_REQUEST['id'];
+                $response = category::status($conn,$q);
             }
             if($response  === false){
                 $url['_page'] = "dashboard";

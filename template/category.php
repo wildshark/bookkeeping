@@ -60,7 +60,7 @@
                                 <i class="header-icon ti-bell"></i>
                             </div>
                             <div class="dropdown dib">
-                                <a href='?_page=log-off'><i class="header-icon ti-power-off"></i></a>
+                                <a href='?_page=log-off&token=<?=$_GET['token']?>'><i class="header-icon ti-power-off"></i></a>
                             </div>                       
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-title">
-                                    <h4>Input Style</h4>
+                                    <h4>Categories Setup</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="basic-form">
@@ -126,16 +126,16 @@
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-title">
-                                    <h4>Search Box Style</h4>
+                                    <h4>Categories</h4>
                                     
                                 </div>
                                 <div class="card-body">
                                     <div class="basic-form">
                                         <!-- Nav tabs -->
 											<ul class="nav nav-tabs" role="tablist">
-												<li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Income</span></a> </li>
-												<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Expenses</span></a> </li>
-												<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Messages</span></a> </li>
+												<li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><span class="hidden-sm-up"><i class="ti-stats-down"></i></span> <span class="hidden-xs-down">Income</span></a> </li>
+												<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><span class="hidden-sm-up"><i class="ti-stats-up"></i></span> <span class="hidden-xs-down">Expenses</span></a> </li>
+												<!--li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Messages</span></a> </li-->
 											</ul>
 											<!-- Tab panes -->
 											<div class="tab-content tabcontent-border">
@@ -164,17 +164,26 @@
                                                                                     $n = $n + 1;
                                                                                 }
                                                                                 if($i['status_id'] == 1){
+                                                                                    $css="color-success";
                                                                                     $btn ="Enable";
+                                                                                    $status =2;
                                                                                 }else{
+                                                                                    $css = "color-danger";
                                                                                     $btn ="Disable";
+                                                                                    $status=1;
                                                                                 }
+                                                                                $id =$i['category_id'];
 
                                                                                 echo"
                                                                                     <tr>
                                                                                         <th scope='row'>{$n}</th>
                                                                                         <td>{$i['category_title']}</td>
-                                                                                        <td>{$btn}</td>
-                                                                                        <td class='color-danger'>Remove</td>
+                                                                                        <td>
+                                                                                            <a href='?_submit=category-status&id={$id}&status={$status}' class='{$css}'>{$btn}</a>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <a href='?_submit=category-delete&id={$id}' class='color-danger'>Remove</a>
+                                                                                        </td>
                                                                                     </tr>"
                                                                                 ;
 
@@ -212,17 +221,26 @@
                                                                                     $n = $n + 1;
                                                                                 }
                                                                                 if($i['status_id'] == 1){
+                                                                                    $css="color-success";
                                                                                     $btn ="Enable";
+                                                                                    $status =2;
                                                                                 }else{
+                                                                                    $css = "color-danger";
                                                                                     $btn ="Disable";
+                                                                                    $status=1;
                                                                                 }
+                                                                                $id =$i['category_id'];
 
                                                                                 echo"
                                                                                     <tr>
                                                                                         <th scope='row'>{$n}</th>
                                                                                         <td>{$i['category_title']}</td>
-                                                                                        <td>{$btn}</td>
-                                                                                        <td class='color-danger'>Remove</td>
+                                                                                        <td>
+                                                                                            <a href='?_submit=category-status&id={$id}&status={$status}' class='{$css}'>{$btn}</a>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <a href='?_submit=category-delete&id={$id}' class='color-danger'>Remove</a>
+                                                                                        </td>
                                                                                     </tr>"
                                                                                 ;
 
@@ -243,6 +261,7 @@
                             </div>
                         </div>
                         <!-- /# column -->
+                        <?php include("model.php")?>
                     </div>
                     <!-- /# row -->
                     
