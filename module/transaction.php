@@ -113,9 +113,35 @@ class transaction{
         return $stmt->fetchAll();
     }
 
-    public static function report(){
+    public static function total($conn){
 
-    }   
+        $sql ="SELECT sum(bk_transaction.dr) AS dr, sum(bk_transaction.cr) AS cr, sum(bk_transaction.dr -bk_transaction.cr) AS bal FROM bk_transaction";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetch();
+
+    }
+
+    public static function total_cash($conn){
+
+        $sql ="SELECT sum(bk_transaction.dr) as dr, sum(bk_transaction.cr) as cr, sum(bk_transaction.dr - bk_transaction.cr) as bal FROM bk_transaction WHERE bk_transaction.tran_type = 'cash'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetch();
+
+    }
+
+    public static function total_bank($conn){
+
+        $sql ="SELECT sum(bk_transaction.dr) as dr, sum(bk_transaction.cr) as cr, sum(bk_transaction.dr - bk_transaction.cr) as bal FROM bk_transaction WHERE bk_transaction.tran_type = 'bank'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
 
 }
 

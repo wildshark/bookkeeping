@@ -4,11 +4,11 @@ function menu($token){
 
     return"
         <div class='logo'><a href='index.html'>
-            <!-- <img src='assets/images/logo.png' alt='' /> --><span>Focus</span></a></div>
+            <!-- <img src='assets/images/logo.png' alt='' /> --><span>Qus Account</span></a></div>
         <li class='label'>Main</li>
         <li><a href='?_page=dashboard&token={$token}'><i class='ti-email'></i> Dashboard </a></li>
 
-        <li class='label'>Apps</li>
+        <li class='label'>Financial Transaction</li>
         <li><a class='sidebar-sub-toggle'><i class='ti-bar-chart-alt'></i> Books <span
                 class='sidebar-collapse-icon ti-angle-down'></span></a>
         <ul>

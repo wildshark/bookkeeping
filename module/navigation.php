@@ -7,6 +7,22 @@ $_expenses =  category::fetch_expenses($conn);
 switch($page){
 
     case"dashboard";
+        $bank = transaction::total_bank($conn);
+        $cash = transaction::total_cash($conn);
+        $total = transaction::total($conn);
+        if($total == false){
+            $total = array(
+                "dr"=>"0.00",
+                "cr"=>"0.00",
+                "bal"=>"0.00",
+            );
+        }
+        if($bank == false){
+            $bank['bal'] ="0.00";
+        };
+        if($cash == false){
+            $cash['bal'] ="0.00";
+        };
         require("template/{$page}.php");
     break;
 

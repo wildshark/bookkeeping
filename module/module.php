@@ -47,7 +47,7 @@ if(!isset($_REQUEST["_submit"])){
                 $q[] = strtolower($_REQUEST['type']);
                 $q[] = $_REQUEST['ref'];
                 $q[] = $_REQUEST['amt'];
-                $response = tranaction::add_income($conn,$q);
+                $response = transaction::add_income($conn,$q);
 
             }elseif($_action === "expenses"){
                 $q[] = time();
@@ -57,11 +57,11 @@ if(!isset($_REQUEST["_submit"])){
                 $q[] = strtolower($_REQUEST['type']);
                 $q[] = $_REQUEST['ref'];
                 $q[] = $_REQUEST['amt'];
-                $response = tranaction::add_expenses($conn,$q);
+                $response = transaction::add_expenses($conn,$q);
 
             }elseif($_action === "delete"){
                 $id = $_REQUEST['id'];
-                $response = tranaction::delete($conn,$id);
+                $response = transaction::delete($conn,$id);
             }
 
             if($response  === false){
