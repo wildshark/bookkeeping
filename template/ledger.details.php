@@ -59,7 +59,7 @@
                             <i class="header-icon ti-bell"></i>
                         </div>
                         <div class="dropdown dib">
-                            <a href='?__usr=log-off'><i class="header-icon ti-power-off"></i></a>
+                            <a href='?_page=log-off'><i class="header-icon ti-power-off"></i></a>
                         </div>                       
                     </div>
                 </div>

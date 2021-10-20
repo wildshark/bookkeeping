@@ -6,6 +6,16 @@ $_expenses =  category::fetch_expenses($conn);
 
 switch($page){
 
+    case"log-off";
+        session_destroy();
+        echo"
+            <script type='text/javascript'>
+                window.close() ;
+            </script>";
+        exit;
+    break;
+
+
     case"dashboard";
         $bank = transaction::total_bank($conn);
         $cash = transaction::total_cash($conn);

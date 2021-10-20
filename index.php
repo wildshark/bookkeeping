@@ -43,8 +43,7 @@ if(!file_exists($_CONFIG)){
             if(!isset($_REQUEST['_submit'])){
                 if(!isset($_REQUEST['_page'])){
                     session_destroy();
-                    require("template/login.php");
-                    exit;
+                    require("template/login.php");                    
                 }else{
                     require("module/navigation.php");
                 }
