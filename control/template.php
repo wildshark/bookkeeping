@@ -16,7 +16,7 @@ function menu($token){
             <li><a href='?_page=expenses&token={$token}'>Expenses Transaction</a></li>
             <li><a href='?_page=cash&token={$token}'>Cash Book</a></li>
             <li><a href='?_page=bank&token={$token}'>Bank Book</a></li>
-            <!--li><a href='?_page=payroll&token={$token}'>Payroll</a></li-->
+            <li><a href='?_page=payroll&token={$token}'>Payroll</a></li>
         </ul>
         </li>
         <li><a href='#' data-toggle='modal' data-target='#incomeModalCenter'><i class='ti-download'></i> Income </a></li>
@@ -25,7 +25,7 @@ function menu($token){
                 class='sidebar-collapse-icon ti-angle-down'></span></a>
         <ul>
             <li><a href='?_page=ledger&token={$token}'> Ledgers</a></li>
-            <li><a href='?_page=report&token={$token}'> Finanical Report</a></li>
+            <li><a href='href='#' data-toggle='modal' data-target='#reportModalCenter''> Finanical Report</a></li>
         </ul>
         <!--li><a href='#' data-toggle='modal' data-target='#exampleModalCenter'><i class='ti-email'></i> Financal Report</a></li-->
 

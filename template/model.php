@@ -116,6 +116,39 @@
     </div>
 </div>
 
+<!-- Modal reportModalCenter -->
+<div class="modal fade" id="reportModalCenter">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Grant</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <form action="index.php" method="get">
+                <div class="modal-body">
+                    <!--form-->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="date" name="start" class="form-control">
+                            </div>
+                            <div class="col-sm-6 mt-2 mt-sm-0">
+                                <input type="date" name='end' class="form-control">
+                            </div>
+                        </div>
+                        <input type="hidden" name='token' value="<?=$_GET['token']?>" class="form-control">
+                    <!--/form-->
+                </div>
+                                                   
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="_page" value="report" class="btn btn-primary">Save</button>
+                </div>
+            </form>     
+        </div>
+    </div>
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -166,3 +199,4 @@
         </div>
     </div>
 </div>
+

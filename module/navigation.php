@@ -1,6 +1,8 @@
 <?php
 $token = $_GET['token'];
 $page = $_REQUEST["_page"];
+//var_dump($page);
+//exit;
 $_income =  category::fetch_income($conn);
 $_expenses =  category::fetch_expenses($conn);
 
@@ -79,6 +81,23 @@ if(!isset($_SESSION['token'])){
         case"category";
             $incomes = category::fetch_income($conn);
             $expenses = category::fetch_expenses($conn);
+            require("template/{$page}.php");
+        break;
+
+        case"payroll";
+            $res = payroll::fetch_main($conn);
+            require("template/{$page}.php");
+        break;
+
+        case"payroll.details";
+            $_SESSION['payroll'] = $_GET['id'];
+            $data = payroll::fetch_details($conn,$_GET['id']);
+            require("template/{$page}.php");
+        break;
+
+        case"report";
+            $income = report::income($conn,$_GET);
+            $expenses = report::expenses($conn,$_GET);
             require("template/{$page}.php");
         break;
 

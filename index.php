@@ -30,6 +30,8 @@ if(!file_exists($_CONFIG)){
     include("module/user.php");
     include("module/transaction.php");
     include("module/category.php");
+    include("module/payroll.php");
+    include("module/report.php");
     
     if(!$_SESSION['auth']) {
         header('location:index.php');

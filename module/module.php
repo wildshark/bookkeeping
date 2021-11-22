@@ -99,6 +99,110 @@ if(!isset($_REQUEST["_submit"])){
                 $url['e']=200;
             }
         break;
+
+        case"payroll";
+            if($_action === "main"){
+                switch($submit[2]){
+
+                    case"add";
+                        $q[] = $_REQUEST['date'];
+                        $q[] = $_REQUEST['month'];
+                        $response = payroll::add_main($conn,$q);
+                        $page = "payroll";
+
+                    break;
+                    case"update";
+                        $q[] = $_REQUEST['date'];
+                        $q[] = $_REQUEST['month'];
+                        $q[] = $_REQUEST['id'];
+                        $response = payroll::update_main($conn,$q);
+                    break;
+
+                    case"delete";
+                        $q[] = $_REQUEST['id'];
+                        $response = payroll::delete_main($conn,$q);   
+                        $page = "payroll";                     
+                    break;
+                }
+                if($response  === false){
+                    $url['_page'] = "dashboard";
+                    $url['token'] = $_SESSION['token'];
+                    $url['e']=100;
+                }else {
+                    $url['_page'] = "payroll";                    
+                    $url['token'] = $_SESSION['token']; 
+                    $url['e']=200;
+                }
+            }elseif($_action === "details"){
+                $id = $_SESSION['payroll'];
+                switch($submit[2]){
+                    case"add";
+                        $q[] = $_SESSION['payroll'];
+                        $q[] = $_REQUEST['staff'];
+                        $q[] = $_REQUEST['ref'];
+                        $q[] = $_REQUEST['basic'];
+                        $q[] = $_REQUEST['provt_fund'];
+                        $q[] = $_REQUEST['paye'];
+                        $q[] = $_REQUEST['education_loan'];
+                        $q[] = $_REQUEST['salary_advance'];
+                        $q[] = $_REQUEST['rent_advance'];
+                        $q[] = payroll::ssf($_REQUEST);
+                        $q[] = payroll::taxable_income($_REQUEST);
+                        $q[] = payroll::gross_salary($_REQUEST);
+                        $q[] = payroll::net_salary($_REQUEST);
+                        $q[] = payroll::ssf_13($_REQUEST);
+                        $q[] = payroll::ssnit($_REQUEST);
+                        $response = payroll::add_details($conn,$q);
+                        $page = "payroll.details";
+                    break;
+                    
+                    case"update";
+                        $q[] = $_REQUEST['payroll_id'];
+                        $q[] = $_REQUEST['staff'];
+                        $q[] = $_REQUEST['ref'];
+                        $q[] = $_REQUEST['basic'];
+                        $q[] = $_REQUEST['provt_fund'];
+                        $q[] = $_REQUEST['paye'];
+                        $q[] = $_REQUEST['education_loan'];
+                        $q[] = $_REQUEST['salary_advance'];
+                        $q[] = $_REQUEST['rent_advance'];
+                        $q[] = payroll::ssf($_REQUEST);
+                        $q[] = payroll::taxable_income($_REQUEST);
+                        $q[] = payroll::gross_salary($_REQUEST);
+                        $q[] = payroll::net_salary($_REQUEST);
+                        $q[] = payroll::ssf_13($_REQUEST);
+                        $q[] = payroll::ssnit($_REQUEST);
+                        $q[] = $_REQUEST['id'];
+                        $response = payroll::update_details($conn,$q);
+                        $page = "payroll.details";
+                    break;
+
+                    case"delete";
+                        $q[] = $_REQUEST['id'];
+                        $response = payroll::delete_details($conn,$q);
+                        $page = "payroll.details";
+                    break;
+                }
+
+                if($response  === false){
+                    $url['_page'] = "dashboard";
+                    $url['token'] = $_SESSION['token'];
+                    $url['e']=100;
+                }else {
+                    $url['_page'] = $page;                    
+                    $url['token'] = $_SESSION['token']; 
+                    $url['id'] = $id;
+                    $url['e']=200;
+                }
+    
+            }
+        break;
+
+        case"print";
+            if($_action ==="report"){
+                
+            }
+        break;
     }
 }
 
