@@ -43,31 +43,29 @@
         </div>
         <!-- /# sidebar -->
 
-
         <div class="header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="float-left">
-                            <div class="hamburger sidebar-toggle">
-                                <span class="line"></span>
-                                <span class="line"></span>
-                                <span class="line"></span>
-                            </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="float-left">
+                        <div class="hamburger sidebar-toggle">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
                         </div>
-                        <div class="float-right">
-                            <div class="dropdown dib">
-                                <i class="header-icon ti-bell"></i>
-                            </div>
-                            <div class="dropdown dib">
-                                <a href='?_page=log-off&token=<?=$_GET['token']?>'><i class="header-icon ti-power-off"></i></a>
-                            </div>                       
+                    </div>
+                    <div class="float-right">
+                        <div class="dropdown dib">
+                            <i class="header-icon ti-bell"></i>
                         </div>
+                        <div class="dropdown dib">
+                            <a href='?_page=log-off&token=<?=$_GET['token']?>'><i class="header-icon ti-power-off"></i></a>
+                        </div>                       
                     </div>
                 </div>
             </div>
         </div>
-
+    </div>
     <div class="content-wrap">
         <div class="main">
             <div class="container-fluid">
@@ -95,43 +93,6 @@
                 <!-- /# row -->
                 <section id="main-content">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="card">
-                                <div class="stat-widget-one">
-                                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
-                                    </div>
-                                    <div class="stat-content dib">
-                                        <div class="stat-text">Income</div>
-                                        <div class="stat-digit"><?=number_format($total['dr'],2)?></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card">
-                                <div class="stat-widget-one">
-                                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
-                                    </div>
-                                    <div class="stat-content dib">
-                                        <div class="stat-text">Expenses</div>
-                                        <div class="stat-digit"><?=number_format($total['cr'],2)?></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card">
-                                <div class="stat-widget-one">
-                                    <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
-                                    <div class="stat-content dib">
-                                        <div class="stat-text">Available Cash</div>
-                                        <div class="stat-digit"><?=number_format($total['bal'],2)?></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="bootstrap-data-table-panel">
@@ -141,11 +102,11 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Date</th>
-                                                    <th>Transaction</th>
                                                     <th>Details</th>
                                                     <th>Ref</th>
-                                                    <th>Income</th>
-                                                    <th>Expenses</th>
+                                                    <th>Investment</th>
+                                                    <th>Profit</th>
+                                                    <th>Withdraw</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -158,18 +119,16 @@
                                                                 $n = 1;
                                                             }else{
                                                                 $n =$n +1;
-                                                            }  
-                                                            $r['dr']= number_format($r['dr'],2);
-                                                            $r['cr'] = number_format($r['cr'],2); 
+                                                            }   
                                                             echo" 
                                                             <tr>
                                                                 <td>{$n}</td>
                                                                 <td>{$r['tran_date']}</td>
-                                                                <td>{$r['category_title']}</td>
                                                                 <td>{$r['details']}</td>
                                                                 <td>{$r['ref']}</td>
-                                                                <td>{$r['dr']}</td>
-                                                                <td>{$r['cr']}</td>
+                                                                <td>{$r['invest']}</td>
+                                                                <td>{$r['profit']}</td>
+                                                                <td>{$r['cashout']}</td>
                                                             </tr>";
                                                         }
                                                     }
@@ -197,14 +156,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-    
     <!-- jquery vendor -->
     <script src="assets/js/lib/jquery.min.js"></script>
     <script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
@@ -212,9 +163,7 @@
     <script src="assets/js/lib/menubar/sidebar.js"></script>
     <script src="assets/js/lib/preloader/pace.min.js"></script>
     <!-- sidebar -->
-    
     <!-- bootstrap -->
-
     <script src="assets/js/lib/bootstrap.min.js"></script><script src="assets/js/scripts.js"></script>
     <!-- scripit init-->
     <script src="assets/js/lib/data-table/datatables.min.js"></script>
@@ -226,16 +175,5 @@
     <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
     <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
     <script src="assets/js/lib/data-table/datatables-init.js"></script>
-
-
-
-
-
-
-
-
-
-
 </body>
-
 </html>

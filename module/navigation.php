@@ -44,21 +44,37 @@ if(!isset($_SESSION['token'])){
         break;
 
         case"income";
+            $total = transaction::total($conn);
+            if($total == false){
+                $total['cr'] =0;
+            }
             $res = transaction::fetch_income($conn);
             require("template/{$page}.php");
         break;
 
         case"expenses";
+            $total = transaction::total($conn);
+            if($total == false){
+                $total['cr'] =0;
+            }
             $res = transaction::fetch_expenses($conn);
             require("template/{$page}.php");
         break;
 
         case"cash";
+            $total = transaction::total_bank($conn);
+            if($total == false){
+                $total = array("dr"=>0,"cr"=>0,"bal"=>0);
+            }
             $res = transaction::fetch_cash($conn);
             require("template/{$page}.php");
         break;
 
         case"bank";
+            $total = transaction::total_cash($conn);
+            if($total == false){
+                $total = array("dr"=>0,"cr"=>0,"bal"=>0);
+            }
             $res = transaction::fetch_bank($conn);
             require("template/{$page}.php");
         break;
@@ -69,6 +85,10 @@ if(!isset($_SESSION['token'])){
         break;
 
         case"ledger";
+            $total = transaction::total($conn);
+            if($total == false){
+                $total = array("dr"=>0,"cr"=>0,"bal"=>0);
+            }
             $res = transaction::ledger($conn);
             require("template/{$page}.php");
         break;
@@ -99,6 +119,17 @@ if(!isset($_SESSION['token'])){
             $income = report::income($conn,$_GET);
             $expenses = report::expenses($conn,$_GET);
             require("template/{$page}.php");
+        break;
+
+        case"investment";
+            $res = investment::fetch_main($conn);
+            require("template/{$page}.main.php");
+        break;
+
+        case"investment-details";
+            
+            $res = investment::fetch_details($conn,$_GET['id']);
+            require("template/investment.details.php");
         break;
 
         case"user";

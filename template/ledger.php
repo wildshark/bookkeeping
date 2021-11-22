@@ -94,6 +94,43 @@
                 <!-- /# row -->
                 <section id="main-content">
                     <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                                    </div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Deposit</div>
+                                        <div class="stat-digit"><?=number_format($total['dr'],2)?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                                    </div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Withdraw</div>
+                                        <div class="stat-digit"><?=number_format($total['cr'],2)?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Total</div>
+                                        <div class="stat-digit"><?=number_format($total['bal'],2)?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="bootstrap-data-table-panel">

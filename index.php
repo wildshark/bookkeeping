@@ -31,6 +31,7 @@ if(!file_exists($_CONFIG)){
     include("module/transaction.php");
     include("module/category.php");
     include("module/payroll.php");
+    include("module/investment.php");
     include("module/report.php");
     
     if(!$_SESSION['auth']) {
