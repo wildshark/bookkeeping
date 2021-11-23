@@ -204,8 +204,9 @@
                                                                 <td>{$r['start_date']}</td>
                                                                 <td>{$r['end_date']}</td>
                                                                 <td>
-                                                                    <a href='#'  data-toggle='modal' data-target='#{$mode}'class='text-primary'>View</a> |
-                                                                    <a href='?_submit=-delete&type=expenses&id={$id}&token={$token}' class='text-danger'>Delete</a>
+                                                                    <a href='#'  data-toggle='modal' data-target='#{$mode}'class='text-primary'>Edit</a> |
+                                                                    <a href='?_page=investment-details&id={$id}&token={$token}'  class='text-primary'>View</a> |
+                                                                    <a href='?_submit=investment-main-delete&id={$id}&token={$token}' class='text-danger'>Delete</a>
                                                                 </td>
                                                             </tr>
                                                             <div class='modal fade' id='{$mode}'>

@@ -56,6 +56,21 @@ class investment{
 
     }
 
+    public static function delete_main($conn,$r){
+
+        $sql ="DELETE FROM 'main'.'invest_main' WHERE rowid = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1,$r[0]);
+        
+        $stmt->execute();
+
+        $sql ="DELETE FROM 'main'.'invest_details' WHERE invest_id =?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1,$r[0]);
+        
+        return $stmt->execute();
+    }
+
     public static function fetch_details($conn,$id){
 
         $sql ="SELECT invest_details.* FROM invest_details WHERE invest_id =?";

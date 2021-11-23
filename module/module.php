@@ -204,7 +204,7 @@ if(!isset($_REQUEST["_submit"])){
             if($_action === "details"){
                 $page = "investment-details";
                 $id = $_SESSION['invest_id'];
-                if($submit[1] === "add"){
+                if($submit[2] === "add"){
                     $q[] = $_SESSION['invest_id'];
                     $q[] = $_REQUEST['date'];
                     $q[] = $_REQUEST['details'];
@@ -222,11 +222,25 @@ if(!isset($_REQUEST["_submit"])){
                     $q[] = $_REQUEST['id'];
                     $response = investment::delete_details($conn,$q);
                 }           
-                
             }elseif($_action === "main"){
+                $page = "investment";
+                if($submit[2] === "add"){
+                    $q[] = $_REQUEST['title'];
+                    $q[] = $_REQUEST['start'];
+                    $q[] = $_REQUEST['end'];
+                    $response = investment::add_main($conn,$q);
 
+                }elseif($submit[2] === "update"){
+                    $q[] = $_REQUEST['title'];
+                    $q[] = $_REQUEST['start'];
+                    $q[] = $_REQUEST['end'];
+                    $q[] = $_REQUEST['id'];
+                    $response = investment::update_main($conn,$q);
+                }elseif($submit[2] === "delete"){
+                    $q[] = $_REQUEST['id'];
+                    $response = investment::delete_main($conn,$q);
+                }
             }
-
             if($response  === false){
                 $url['_page'] = "dashboard";
                 $url['token'] = $_SESSION['token'];
