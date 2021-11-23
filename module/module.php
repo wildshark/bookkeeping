@@ -2,6 +2,7 @@
 if(!isset($_REQUEST["_submit"])){
     $url['action'] =="missing-request";
 }else{
+
     $submit = explode("-",$_REQUEST["_submit"]);
     $_module = $submit[0];
     $_action = $submit[1];
@@ -196,13 +197,50 @@ if(!isset($_REQUEST["_submit"])){
                 }
     
             }
+           
         break;
 
-        case"print";
-            if($_action ==="report"){
+        case"investment";
+            if($_action === "details"){
+                $page = "investment-details";
+                $id = $_SESSION['invest_id'];
+                if($submit[1] === "add"){
+                    $q[] = $_SESSION['invest_id'];
+                    $q[] = $_REQUEST['date'];
+                    $q[] = $_REQUEST['details'];
+                    $q[] = $_REQUEST['ref'];
+                    $q[] = $_REQUEST['amount'];
+
+                    if($_REQUEST['type'] === "Investment"){
+                        $response = investment::add_details_invest($conn,$q);
+                    }elseif($_REQUEST['type'] === "Returns"){
+                        $response = investment::add_details_profit($conn,$q);
+                    }elseif($_REQUEST['type'] === "Cashout"){
+                        $response = investment::add_details_checkout($conn,$q);
+                    }
+                }elseif($submit[1] === "delete"){
+                    $q[] = $_REQUEST['id'];
+                    $response = investment::delete_details($conn,$q);
+                }           
                 
+            }elseif($_action === "main"){
+
             }
+
+            if($response  === false){
+                $url['_page'] = "dashboard";
+                $url['token'] = $_SESSION['token'];
+                $url['e']=100;
+            }else {
+                $url['_page'] = $page;                
+                $url['token'] = $_SESSION['token']; 
+                $url['id'] = $id;
+                $url['e']=200;
+            }
+
         break;
+
+        
     }
 }
 

@@ -92,15 +92,15 @@
                 </div>
                 <!-- /# row -->
                 <section id="main-content">
-                <div class="row">
+                    <div class="row">
                         <div class="col-lg-4">
                             <div class="card">
                                 <div class="stat-widget-one">
                                     <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
                                     </div>
                                     <div class="stat-content dib">
-                                        <div class="stat-text">Deposit</div>
-                                        <div class="stat-digit"><?=number_format($total['dr'],2)?></div>
+                                        <div class="stat-text">Investment</div>
+                                        <div class="stat-digit"><?=number_format($total['invest'],2)?></div>
                                     </div>
                                 </div>
                             </div>
@@ -111,8 +111,8 @@
                                     <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
                                     </div>
                                     <div class="stat-content dib">
-                                        <div class="stat-text">Withdraw</div>
-                                        <div class="stat-digit"><?=number_format($total['cr'],2)?></div>
+                                        <div class="stat-text">Returns</div>
+                                        <div class="stat-digit"><?=number_format($total['profit'],2)?></div>
                                     </div>
                                 </div>
                             </div>
@@ -122,15 +122,55 @@
                                 <div class="stat-widget-one">
                                     <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
                                     <div class="stat-content dib">
-                                        <div class="stat-text">Total</div>
-                                        <div class="stat-digit"><?=number_format($total['bal'],2)?></div>
+                                        <div class="stat-text">Cashout</div>
+                                        <div class="stat-digit"><?=number_format($total['cashout'],2)?></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-lg-12">
+                            <a href="#" data-toggle='modal' data-target='#investmentModalCenter' class="btn btn-success m-b-10 m-l-5">Add New</a>
+                             <!--form add new-->
+                            <div class="modal fade" id="investmentModalCenter">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">New Investment</h5>
+                                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="index.php" method="get">
+                                            <div class="modal-body">
+                                                <!--form-->
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <label>Investment Title</label>
+                                                            <input type="text" name="title" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6 mt-2 mt-sm-0">
+                                                            <label>Start Date</label>
+                                                            <input type="date" name='start' class="form-control">
+                                                        </div>
+                                                        <div class="col-sm-6 mt-2 mt-sm-0">
+                                                            <label>End Date</label>
+                                                            <input type="date" name='end' class="form-control">
+                                                        </div>
+                                                    </div>
+                                                <!--/form-->
+                                            </div>                                                                            
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" name="_submit" value="investment-main-add" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </form>     
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card">
                                 <div class="bootstrap-data-table-panel">
                                     <div class="table-responsive">
@@ -156,6 +196,7 @@
                                                                 $n =$n +1;
                                                             }   
                                                             $id = $r['invest_id'];
+                                                            $mode = md5($id);
                                                             echo" 
                                                             <tr>
                                                                 <td>{$n}</td>
@@ -163,10 +204,49 @@
                                                                 <td>{$r['start_date']}</td>
                                                                 <td>{$r['end_date']}</td>
                                                                 <td>
-                                                                    <a href='?_page=investment-details&id={$id}&token={$token}' class='text-primary'>View</a> |
+                                                                    <a href='#'  data-toggle='modal' data-target='#{$mode}'class='text-primary'>View</a> |
                                                                     <a href='?_submit=-delete&type=expenses&id={$id}&token={$token}' class='text-danger'>Delete</a>
                                                                 </td>
-                                                            </tr>";
+                                                            </tr>
+                                                            <div class='modal fade' id='{$mode}'>
+                                                                        <div class='modal-dialog modal-dialog-centered' role='document'>
+                                                                            <div class='modal-content'>
+                                                                                <div class='modal-header'>
+                                                                                    <h5 class='modal-title'>Edit Investment</h5>
+                                                                                    <button type='button' class='close' data-dismiss='modal'><span>&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <form action='index.php' method='get'>
+                                                                                    <div class='modal-body'>
+                                                                                        <!--form-->
+                                                                                            <div class='row'>
+                                                                                                <div class='col-sm-12'>
+                                                                                                    <label>Investment Title</label>
+                                                                                                    <input type='text' name='title' value='{$r['invest_name']}' class='form-control'>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class='row'>
+                                                                                                <div class='col-sm-6 mt-2 mt-sm-0'>
+                                                                                                    <label>Start Date</label>
+                                                                                                    <input type='date' name='start' value='{$r['start_date']}' class='form-control'>
+                                                                                                </div>
+                                                                                                <div class='col-sm-6 mt-2 mt-sm-0'>
+                                                                                                    <label>End Date</label>
+                                                                                                    <input type='date' name='end' value='{$r['end_date']}' class='form-control'>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <!--/form-->
+                                                                                    </div>                                                                            
+                                                                                    <div class='modal-footer'>
+                                                                                        <input type='hidden' name='id' value='{$id}' class='form-control'>
+                                                                                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                                                                                        <button type='submit' name='_submit' value='investment-main-update' class='btn btn-primary'>Save</button>
+                                                                                    </div>
+                                                                                </form>     
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                            ";
                                                         }
                                                     }
                                                 ?>                                              

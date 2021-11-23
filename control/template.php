@@ -16,7 +16,7 @@ function menu($token){
             <li><a href='?_page=expenses&token={$token}'>Expenses Transaction</a></li>
             <li><a href='?_page=cash&token={$token}'>Cash Book</a></li>
             <li><a href='?_page=bank&token={$token}'>Bank Book</a></li>
-            <li><a href='?_page=investment&token={$token}'>Investment Transaction</a></li>
+            <li><a href='?_page=investment&token={$token}'>Investment</a></li>
             <li><a href='?_page=payroll&token={$token}'>Payroll</a></li>
         </ul>
         </li>

@@ -93,8 +93,94 @@
                 <!-- /# row -->
                 <section id="main-content">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-4">
                             <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                                    </div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Investment</div>
+                                        <div class="stat-digit"><?=number_format($total['invest'],2)?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                                    </div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Returns</div>
+                                        <div class="stat-digit"><?=number_format($total['profit'],2)?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Cashout</div>
+                                        <div class="stat-digit"><?=number_format($total['cashout'],2)?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a href="#" data-toggle='modal' data-target='#investmentModalCenter' class="btn btn-success m-b-10 m-l-5">Add New</a>
+                             <!--form add new-->
+                            <div class="modal fade" id="investmentModalCenter">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">New Grant</h5>
+                                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="index.php" method="get">
+                                            <div class="modal-body">
+                                                <!--form-->
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <input type="date" name="date" class="form-control">
+                                                        </div>
+                                                        <div class="col-sm-6 mt-2 mt-sm-0">
+                                                            <input type="text" name='ref' value='<?=uniqid()?>' class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <input type="text" name="details" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <select name="type" class="form-control">
+                                                                <option>Investment</option>
+                                                                <option>Returns</option>
+                                                                <option>Cashout</option>
+                                                            </select>                                                            
+                                                        </div>
+                                                        <div class="col-sm-6 mt-2 mt-sm-0">
+                                                            <input type="text" name='amount' class="form-control">
+                                                        </div>
+                                                    </div>
+                                                <!--/form-->
+                                            </div>
+                                                                            
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" name="_submit" value="investment-details-add" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </form>     
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">                                
                                 <div class="bootstrap-data-table-panel">
                                     <div class="table-responsive">
                                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -106,7 +192,8 @@
                                                     <th>Ref</th>
                                                     <th>Investment</th>
                                                     <th>Profit</th>
-                                                    <th>Withdraw</th>
+                                                    <th>Cashout</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -120,6 +207,7 @@
                                                             }else{
                                                                 $n =$n +1;
                                                             }   
+                                                            $id = $r['invest_detail_id'];
                                                             echo" 
                                                             <tr>
                                                                 <td>{$n}</td>
@@ -129,6 +217,9 @@
                                                                 <td>{$r['invest']}</td>
                                                                 <td>{$r['profit']}</td>
                                                                 <td>{$r['cashout']}</td>
+                                                                <td>
+                                                                    <a herf='?_submit=investment-details-delete&id={$id}' class='text-danger'>Delete</a>
+                                                                </td>
                                                             </tr>";
                                                         }
                                                     }

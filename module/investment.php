@@ -2,6 +2,27 @@
 
 class investment{
 
+    public static function total_details($conn,$id){
+
+        $sql="SELECT * FROM 'main'.'get_invest_details' WHERE `invest_id`=? LIMIT 0,1000";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+
+        return $stmt->fetch();
+
+    }
+
+    public static function total_main($conn){
+
+        $sql="SELECT sum(invest_details.invest) AS invest, sum(invest_details.profit) AS profit, sum(invest_details.cashout) AS cashout, sum(((invest_details.invest + invest_details.profit)-invest_details.cashout)) as bal FROM invest_details";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetch();
+
+    }
+
     public static function add_main($conn,$r){
 
         $sql ="INSERT INTO 'main'.'invest_main'('invest_name', 'start_date', 'end_date') VALUES (?, ?, ?)";

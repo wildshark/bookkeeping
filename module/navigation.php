@@ -122,12 +122,21 @@ if(!isset($_SESSION['token'])){
         break;
 
         case"investment";
+            $total = investment::total_main($conn);
+            
+            if($total == false){
+                $total = array("invest"=>0,"profit"=>0,"cashout"=>0);
+            }
             $res = investment::fetch_main($conn);
             require("template/{$page}.main.php");
         break;
 
         case"investment-details";
-            
+            $_SESSION['invest_id'] = $_GET['id'];
+            $total = investment::total_details($conn,$_GET['id']);
+            if($total == false){
+                $total = array("invest"=>0,"profit"=>0,"cashout"=>0);
+            }
             $res = investment::fetch_details($conn,$_GET['id']);
             require("template/investment.details.php");
         break;
